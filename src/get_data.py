@@ -24,6 +24,12 @@ df['date'] = df.datetime.dt.date  # date
 
 #%% visualize time series
 
-ggplot(df, aes('time', 'cap', group='date')) + \
+p = ggplot(df, aes('time', 'cap', group='date')) + \
     geom_line(alpha=0.2) + \
     facet_wrap('name')
+
+p
+
+#%% save plot to repo
+
+p.save('../output/time_series.pdf')

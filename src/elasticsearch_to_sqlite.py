@@ -63,7 +63,9 @@ while (scroll_size > 0):
     retrieved += scroll_size
     print ('Retrieved %i of %i' % (retrieved, total_size))
 
-#%% store in local db
+#%% generate 'datetime' feature and store in local db
+
+df_all['datetime'] = pd.to_datetime(df_all.timestamp)
 
 con = sqlite3.connect("../database/parkleit2.sqlite")
 df_all.to_sql(name="parkleit2", con=con, if_exists="replace")

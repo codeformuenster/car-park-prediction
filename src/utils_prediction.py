@@ -13,7 +13,7 @@ import datetime
 def forecast_linear(dt, car_park):
     '''Simple linear prediction.'''
     # get latest two observations, before the given point in time
-    df = get_data.get_data()
+    df = get_data.get_all_data()
     df2 = df[(df.datetime < str(dt)) & 
              (df.name == car_park)]
     df3 = df2.sort_values(by='datetime')

@@ -22,7 +22,7 @@ def get_data():
     return df
 
 #%% visualize all data
-if __name__ == '__main__':    
+if __name__ == '__main__':   
     df = get_data()
 
     p = ggplot(df, aes('time', 'cap', group='date')) + \

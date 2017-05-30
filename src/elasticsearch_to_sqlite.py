@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 """
-Created on Thu May 25 11:28:15 2017
+Get all observations from elasticsearch and add to local SQlite db.
 
+Created on Thu May 25 11:28:15 2017
 @author: thor
 """
 
@@ -9,28 +9,29 @@ from elasticsearch import Elasticsearch
 import pandas as pd
 import sqlite3
 
-#%% setup elasticsearch
+# %% SETUP ELASTICSEARCH
 
 api_link = 'https://elasticsearch.kube.codeformuenster.org'
-es = Elasticsearch(api_link, 
-                   verify_certs=True)
+es = Elasticsearch(api_link, verify_certs=True)
 
-#%% page to pandas
+# %% PAGE TO PANDAS
+
 
 def page_to_df(page):
+    """Convert search page to pandas DataFrame."""
     hits = page['hits']['hits']
-    observations = [ x['_source'] for x in hits]
+    observations = [x['_source'] for x in hits]
     data_all = pd.DataFrame(observations)
     data_select = data_all[['name', 'timestamp', 'free']]
     df = data_select.dropna(axis=0, how='any')
     return df
 
-#%% scroll
+# %% SCROLL
 
 page = es.search(
     index='parkleit2',
-    scroll = '10m',
-    size = 10000,
+    scroll='10m',
+    size=10000,
     body={"query": {"match_all": {}}}
 )
 
@@ -47,8 +48,8 @@ retrieved = 0
 
 while (scroll_size > 0):
     print ("Scrolling...")
-    
-    page = es.scroll(scroll_id = sid, scroll = '10m')
+
+    page = es.scroll(scroll_id=sid, scroll='10m')
     sid = page['_scroll_id']  # Update the scroll ID
 
     # store hits locally
@@ -63,7 +64,7 @@ while (scroll_size > 0):
     retrieved += scroll_size
     print ('Retrieved %i of %i' % (retrieved, total_size))
 
-#%% generate 'datetime' feature and store in local db
+# %% generate 'datetime' feature and store in local db
 
 df_all['datetime'] = pd.to_datetime(df_all.timestamp)
 

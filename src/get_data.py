@@ -7,7 +7,7 @@ Created on Tue May 23 21:34:02 2017
 
 import sqlite3
 import pandas as pd
-from ggplot import aes, geom_line, facet_wrap
+from ggplot import aes, geom_line, facet_wrap, ggplot
 
 # %% database to pandas, generate features
 
@@ -17,6 +17,7 @@ def get_all_data():
     con = sqlite3.connect("../database/parkleit2.sqlite")
     df = pd.read_sql(sql="SELECT * FROM parkleit2", con=con)
     con.close()
+    df['datetime'] = pd.to_datetime(df.timestamp)  # TODO: remove
     df['cap'] = pd.to_numeric(df.free)
     df['time'] = df.datetime.dt.time  # time of the day
     df['date'] = df.datetime.dt.date  # date

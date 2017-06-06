@@ -2,3 +2,6 @@ data/*
 *.sublime-workspace
 *.sublime-project
 src/__pycache__*
+.Rproj.user
+*.Rhistory
+*src.Rproj

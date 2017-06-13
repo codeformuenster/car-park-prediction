@@ -11,6 +11,14 @@ from ggplot import aes, geom_line, facet_wrap, ggplot
 
 # %% database to pandas, generate features
 
+def get_all_data():
+    """Get all observations from database."""
+    con = sqlite3.connect("../database/parkleit2.sqlite")
+    df = pd.read_sql(sql="SELECT * FROM parkleit2", con=con)
+    con.close()
+    return df
+
+
 def engineer_features():
     """Feature engineering for regression."""
     # get data 
@@ -29,25 +37,26 @@ def engineer_features():
     df['minute'] = df.datetime.dt.minute  # minute
     df['second'] = df.datetime.dt.second  # minute
 
+    # lag reatures
+    # TODO # 30 minutes ago (interpolated)
+
     # engineer external features
     # TODO # 'bank holiday North-Rhine Westfalia'
     # TODO # 'bank holiday Niedersachsen'
+    # TODO # 'bank holiday Netherlands'
     # TODO # avg. temperature of day
     # TODO # rain probability of day
-    # TODO # football match
+    # TODO # X coordinate car park
+    # TODO # Y coordinate car park
+    # TODO # Send
+    # TODO # Events from event API?
+    # TODO # football match?
     
     # update database
     con = sqlite3.connect("../database/parkleit2.sqlite")
-    df.to_sql(name="parkleit2", con=con, if_exists="replace")
+    df.to_sql(name="parkleit2", con=con, if_exists="replace", index=False)
     con.close()
 
-
-def get_all_data():
-    """Get all observations from database."""
-    con = sqlite3.connect("../database/parkleit2.sqlite")
-    df = pd.read_sql(sql="SELECT * FROM parkleit2", con=con)
-    con.close()
-    return df
 
 
 def get_latest_n():
@@ -72,10 +81,4 @@ def set_indices():
 
 # %% visualize all data
 if __name__ == '__main__':
-    df = get_all_data()
-
-    p = ggplot(df, aes('time', 'cap', group='date')) + \
-        geom_line(alpha=0.2) + \
-        facet_wrap('name')
-    p.save('../output/time_series.pdf')
-    p
+    pass

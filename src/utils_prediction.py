@@ -39,6 +39,8 @@ def forecast_linear(dt, car_park):
 def forecast_regression(dt, car_park):
     """Regression-based forecast of time series"""
     # get training data (for 'car_park')
+    df = get_data.get_all_data()
+    # build X and y for model fitting
     # TODO
     # train random forest model
     rf = RandomForestRegressor()

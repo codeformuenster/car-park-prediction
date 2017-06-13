@@ -7,7 +7,7 @@ Created on Tue May 23 21:34:02 2017
 
 import sqlite3
 import pandas as pd
-from ggplot import aes, geom_line, facet_wrap, ggplot
+
 
 # %% database to pandas, generate features
 

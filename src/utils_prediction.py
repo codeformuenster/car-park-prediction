@@ -7,7 +7,7 @@ Created on Mon May 29 07:06:24 2017
 
 import get_data
 import datetime
-import sklearn
+from sklearn.ensemble import RandomForestRegressor
 
 
 def forecast_linear(dt, car_park):
@@ -41,6 +41,7 @@ def forecast_regression(dt, car_park):
     # get training data (for 'car_park')
     # TODO
     # train random forest model
+    rf = RandomForestRegressor()
     # TODO
     # make prediction for 'dt'
     # TODO

@@ -7,6 +7,7 @@ Created on Mon May 29 07:06:24 2017
 
 import get_data
 import datetime
+import sklearn
 
 
 def forecast_linear(dt, car_park):
@@ -33,7 +34,19 @@ def forecast_linear(dt, car_park):
     # limit prediction to min-max range of all observations for this car-park
     fcst_cap = max(fcst_cap, 0)
     return(fcst_cap)
-
+    
+    
+def forecast_regression(dt, car_park):
+    """Regression-based forecast of time series"""
+    # get training data (for 'car_park')
+    # TODO
+    # train random forest model
+    # TODO
+    # make prediction for 'dt'
+    # TODO
+    # return prediction
+    # TODO
+    
 
 if __name__ == '__main__':
     '''Set random point in time and a car park.'''

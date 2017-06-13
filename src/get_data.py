@@ -78,7 +78,3 @@ def set_indices():
     """Set indices to database, for quicker queries."""
     pass
     # TODO
-
-# %% visualize all data
-if __name__ == '__main__':
-    pass

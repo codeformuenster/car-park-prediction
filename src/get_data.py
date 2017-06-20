@@ -38,7 +38,7 @@ def engineer_features():
     df['second'] = df.datetime.dt.second  # minute
 
     # lag reatures
-    # TODO # 30 minutes ago (interpolated)
+    # TODO # 30 minutes ago (interpolated)  # TODO: speed up interpolation
 
     # engineer external features
     # TODO # 'bank holiday North-Rhine Westfalia'

@@ -37,6 +37,18 @@ def engineer_features(df):
     return df
 
 
+def get_all_dates():
+    """Add mean temperature to database, where missing."""
+    dates = get_all_data().date.unique()
+    df = pd.DataFrame(data=dates)
+    return df
+
+
+def crawl_mean_temp_for_dates():
+    """Get mean temperature for dates."""
+    # TODO
+
+
 def engineer_features_all_data():
     """Engineer features for all data in DB."""
     df = get_all_data()

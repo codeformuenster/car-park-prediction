@@ -1,4 +1,4 @@
-"""
+u"""
 Crawl wunderground.com for historic weather data for Münster.
 
 Created on Tue Jun 20 20:59:56 2017
@@ -10,7 +10,7 @@ import re
 from datetime import date
 
 
-def crawl_weather(day):
+def get_mean_temperature(day):
     """Crawl the weather."""
     url = 'https://www.wunderground.com/history/airport/EDDG/' \
         + str(day.year) + '/' + str(day.month) + '/' + str(day.day) \
@@ -24,6 +24,6 @@ def crawl_weather(day):
 if __name__ == "__main__":
 
     day = date(2017, 1, 23)
-    mean_temperature = crawl_weather(day)
+    mean_temperature = get_mean_temperature(day)
     print('Mean temperature in Münster on %s: %f'
           % (day.isoformat(), mean_temperature))

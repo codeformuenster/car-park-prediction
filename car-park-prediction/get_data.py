@@ -21,7 +21,7 @@ def get_all_data():
 
 def engineer_features():
     """Feature engineering for regression."""
-    # get data 
+    # get data
     df = get_all_data()
 
     # engineer simple features
@@ -51,12 +51,10 @@ def engineer_features():
     # TODO # Send
     # TODO # Events from event API?
     # TODO # football match?
-    
     # update database
     con = sqlite3.connect("../database/parkleit2.sqlite")
     df.to_sql(name="parkleit2", con=con, if_exists="replace", index=False)
     con.close()
-
 
 
 def get_latest_n():

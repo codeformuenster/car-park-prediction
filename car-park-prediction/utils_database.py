@@ -19,6 +19,13 @@ def get_all_data():
     return df
 
 
+def write_df_to_db(df):
+    """Write dataframe to dabatase."""
+    con = sqlite3.connect("../database/parkleit2.sqlite")
+    df.to_sql(name="parkleit2", con=con, if_exists="replace", index=False)
+    con.close()
+
+
 def get_latest_n():
     """Get latest N observations, previous to given timestamp."""
     '''

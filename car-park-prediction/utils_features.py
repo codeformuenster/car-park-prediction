@@ -1,15 +1,11 @@
 """Engineer features."""
 
-from utils_database import get_all_data
+from utils_database import get_all_data, write_df_to_db
 import pandas as pd
-import sqlite3
 
 
-def engineer_features():
+def engineer_features(df):
     """Feature engineering for regression."""
-    # get data
-    df = get_all_data()
-
     # engineer simple features
     df['datetime'] = pd.to_datetime(df.timestamp)  # TODO: can be removed?
     df['cap'] = pd.to_numeric(df.free)
@@ -22,7 +18,7 @@ def engineer_features():
     df['hour'] = df.datetime.dt.hour  # hour
     df['minute'] = df.datetime.dt.minute  # minute
 
-    # lag reatures
+    # lag features
     # TODO # 30 minutes ago (interpolated)  # TODO: speed up interpolation
 
     # engineer external features
@@ -37,6 +33,12 @@ def engineer_features():
     # TODO # Events from event API?
     # TODO # football match?
     # update database
-    con = sqlite3.connect("../database/parkleit2.sqlite")
-    df.to_sql(name="parkleit2", con=con, if_exists="replace", index=False)
-    con.close()
+
+    return df
+
+
+def engineer_features_all_data():
+    """Engineer features for all data in DB."""
+    df = get_all_data()
+    df = engineer_features(df)
+    write_df_to_db(df)

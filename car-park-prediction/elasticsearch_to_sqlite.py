@@ -27,7 +27,6 @@ def page_to_df(page):
     return df
 
 # %% SCROLL
-
 page = es.search(
     index='parkleit2',
     scroll='10m',
@@ -47,7 +46,7 @@ print('Total scroll size: %s' % total_size)
 retrieved = 0
 
 while (scroll_size > 0):
-    print ("Scrolling...")
+    print("Scrolling...")
 
     page = es.scroll(scroll_id=sid, scroll='10m')
     sid = page['_scroll_id']  # Update the scroll ID
@@ -60,9 +59,9 @@ while (scroll_size > 0):
 
     # report on progress
     scroll_size = len(page['hits']['hits'])
-    print ("scroll size: %i" % scroll_size)
+    print("scroll size: %i" % scroll_size)
     retrieved += scroll_size
-    print ('Retrieved %i of %i' % (retrieved, total_size))
+    print('Retrieved %i of %i' % (retrieved, total_size))
 
 # %% generate 'datetime' feature and store in local db
 

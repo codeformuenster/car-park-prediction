@@ -34,10 +34,10 @@ def forecast_linear(dt, car_park):
     # limit prediction to min-max range of all observations for this car-park
     fcst_cap = max(fcst_cap, 0)
     return(fcst_cap)
-    
-    
+
+
 def forecast_regression(dt, car_park):
-    """Regression-based forecast of time series"""
+    """Regression-based forecast of time series."""
     # get training data (for 'car_park')
     df = get_data.get_all_data()
     # build X and y for model fitting
@@ -49,7 +49,7 @@ def forecast_regression(dt, car_park):
     # TODO
     # return prediction
     # TODO
-    
+
 
 if __name__ == '__main__':
     '''Set random point in time and a car park.'''

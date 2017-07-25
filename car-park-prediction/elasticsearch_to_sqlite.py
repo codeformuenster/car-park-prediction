@@ -3,6 +3,7 @@ Get all observations from elasticsearch and add to local SQlite db.
 
 Created on Thu May 25 11:28:15 2017
 @author: thor
+# TODO: move this to utils_database.py
 """
 
 from elasticsearch import Elasticsearch

@@ -1,8 +1,15 @@
+# database
 database/*
 
+# sublime
 *.sublime-workspace
 *.sublime-project
-src/__pycache__*
+
+# python cache
+*__pycache__*
+
+# R
 .Rproj.user
 *.Rhistory
 *src.Rproj
+

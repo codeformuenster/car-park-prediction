@@ -16,6 +16,11 @@ def get_all_data():
     con = sqlite3.connect("../database/parkleit2.sqlite")
     df = pd.read_sql(sql="SELECT * FROM parkleit2", con=con)
     con.close()
+
+    # if column 'mean_termperature' does not exist, add it
+    if 'mean_temperature' not in df:
+        df['mean_temperature'] = None
+
     return df
 
 
